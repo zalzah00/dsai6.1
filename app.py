@@ -2,8 +2,9 @@ from flask import Flask, render_template, request
 import joblib
 import os
 from groq import Groq
+from dotenv import load_dotenv
 
-#os.environ["GROQ_API_KEY"] = ""
+load_dotenv()
 client = Groq()
 
 app = Flask(__name__)

@@ -1,0 +1,45 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+*.egg-info/
+
+# Distribution / packaging
+.Python
+build/
+dist/
+wheels/
+*.egg
+
+# Virtual environment
+.venv/
+venv/
+env/
+/site/
+.tox/
+
+# Editors and IDEs
+.idea/
+.vscode/
+*.swp
+*~
+
+# IPython Notebook
+.ipynb_checkpoints
+
+# Logs and databases
+*.log
+*.sqlite
+*.db
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Private credentials and secrets
+*.env
+.env.*
+secrets.yaml
+config.ini
+api_keys.json
