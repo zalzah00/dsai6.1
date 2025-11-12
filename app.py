@@ -22,7 +22,6 @@ def main():
 def dbs():
     return(render_template("dbs.html"))
 
-
 @app.route("/dbs_prediction",methods=["GET","POST"])
 def dbs_prediction():
     q = float(request.form.get("q"))
@@ -48,6 +47,21 @@ def llama_result():
         {"role": "user", "content": q}])
     r=r.choices[0].message.content
     return(render_template("llama_result.html",r=r))
+
+@app.route("/gemini",methods=["GET","POST"])
+def gemini():
+    return(render_template("gemini.html"))
+
+@app.route("/gemini_result",methods=["GET","POST"])
+def gemini_result():
+    q = request.form.get("q")
+    r = client.chat.completions.create(
+    model="llama-3.1-8b-instant",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": q}])
+    r=r.choices[0].message.content
+    return(render_template("gemini_result.html",r=r))
 
 if __name__ == "__main__":
     app.run()
