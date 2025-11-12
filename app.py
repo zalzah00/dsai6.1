@@ -4,7 +4,8 @@ import os
 from groq import Groq
 from dotenv import load_dotenv
 
-load_dotenv()
+if os.path.exists('.env'):
+    load_dotenv()
 client = Groq()
 
 app = Flask(__name__)
