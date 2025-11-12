@@ -7,7 +7,7 @@ app = Flask(__name__)
 def index():
     return(render_template("index.html"))
 
-@app.route("/login",methods=["GET","POST"])
+@app.route("/main",methods=["GET","POST"])
 def main():
     return(render_template("main.html"))
 
