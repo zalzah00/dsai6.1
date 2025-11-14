@@ -8,7 +8,7 @@ if os.path.exists('.env'):
     load_dotenv()
 
 # for AWS, do not run this because not using .env
-# os.environ["GROQ_API_KEY"] = os.environ.get('GROQ_API_KEY')
+os.environ["GROQ_API_KEY"] = os.environ.get('GROQ_API_KEY')
 
 client = Groq()
 
@@ -20,6 +20,7 @@ def index():
 
 @app.route("/main",methods=["GET","POST"])
 def main():
+
     return(render_template("main.html"))
 
 @app.route("/dbs",methods=["GET","POST"])
