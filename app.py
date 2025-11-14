@@ -2,10 +2,14 @@ from flask import Flask, render_template, request
 import joblib
 import os
 from groq import Groq
-from dotenv import load_dotenv
 
+from dotenv import load_dotenv
 if os.path.exists('.env'):
     load_dotenv()
+
+# for AWS, do not run this because not using .env
+# os.environ["GROQ_API_KEY"] = os.environ.get('GROQ_API_KEY')
+
 client = Groq()
 
 app = Flask(__name__)
@@ -21,6 +25,7 @@ def main():
 @app.route("/dbs",methods=["GET","POST"])
 def dbs():
     return(render_template("dbs.html"))
+
 
 @app.route("/dbs_prediction",methods=["GET","POST"])
 def dbs_prediction():
@@ -45,23 +50,8 @@ def llama_result():
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": q}])
-    r=r.choices[0].message.content
+    r = r.choices[0].message.content
     return(render_template("llama_result.html",r=r))
-
-@app.route("/gemini",methods=["GET","POST"])
-def gemini():
-    return(render_template("gemini.html"))
-
-@app.route("/gemini_result",methods=["GET","POST"])
-def gemini_result():
-    q = request.form.get("q")
-    r = client.chat.completions.create(
-    model="llama-3.1-8b-instant",
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": q}])
-    r=r.choices[0].message.content
-    return(render_template("gemini_result.html",r=r))
 
 if __name__ == "__main__":
     app.run()
